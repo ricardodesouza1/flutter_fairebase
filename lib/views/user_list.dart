@@ -1,7 +1,5 @@
-import 'dart:html';
-import 'dart:js';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase/components/user_tile.dart';
 import 'package:flutter_firebase/data/dummy_user.dart';
 
 class UserList extends StatelessWidget {
@@ -9,15 +7,18 @@ class UserList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const user = {...DUMMY_USER};
+    const users = {...DUMMY_USER};
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Lista de usuários'),
+        title: const Text('Lista de Usuários'),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.add))
+        ],
       ),
       body: ListView.builder(
-        itemCount: user.length,
-        itemBuilder: (context, i)=> Text(user.values.elementAt(i).name),
+        itemCount: users.length,
+        itemBuilder: (ctx, i) => UserTile(users.values.elementAt(i)),
         ),
     );
   }
