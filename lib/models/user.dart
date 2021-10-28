@@ -3,7 +3,7 @@ class User {
    final String name;
    final String email;
    final String avatarUrl;
-  
+
    const User({
     required this.id,
     required this.name,

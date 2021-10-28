@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/provider/user.dart';
 import 'package:flutter_firebase/routes/app_routes.dart';
@@ -26,12 +24,12 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
          
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
         ),
         //home: const UserList(),
         routes: {
           AppRoutes.HOME: (_) => const  UserList(),
-          AppRoutes.USER_FORM: (_) => const UserForm(),
+          AppRoutes.USER_FORM: (_) => UserForm(),
         },
          
       ),

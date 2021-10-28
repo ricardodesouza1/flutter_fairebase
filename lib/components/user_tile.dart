@@ -11,29 +11,32 @@ class UserTile extends StatelessWidget {
     final avatar = user.avatarUrl == 'null' || user.avatarUrl.isEmpty
       ? const CircleAvatar(child: Icon(Icons.person))
       : CircleAvatar(backgroundImage: NetworkImage(user.avatarUrl));
-    return ListTile(
-        leading: avatar,
-        title: Text(user.name),
-        subtitle: Text(user.email),
-        trailing: SizedBox(
-          width: 100,
-          child: Row(children: [
-            IconButton(
-              color: Colors.amber,
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  AppRoutes.USER_FORM,
-                  arguments: user,
-                );
-              }, 
-              icon: const Icon(Icons.edit)),
-            IconButton(
-              color: Colors.red,
-              onPressed: () {}, 
-              icon:  const Icon(Icons.delete)),
-            
-            ],),
-        ),
+    return Card(
+      child: ListTile(
+          
+          leading: avatar,
+          title: Text(user.name),
+          subtitle: Text(user.email),
+          trailing: SizedBox(
+            width: 100,
+            child: Row(children: [
+              IconButton(
+                color: Colors.amber,
+                onPressed: () {
+                  Navigator.of(context).pushNamed(
+                    AppRoutes.USER_FORM,
+                    arguments: user,
+                  );
+                }, 
+                icon: const Icon(Icons.edit)),
+              IconButton(
+                color: Colors.red,
+                onPressed: () {}, 
+                icon:  const Icon(Icons.delete)),
+              
+              ],),
+          ),
+      ),
     );
   }
 }
