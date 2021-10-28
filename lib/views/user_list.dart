@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/components/user_tile.dart';
 import 'package:flutter_firebase/provider/user.dart';
+import 'package:flutter_firebase/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 
 class UserList extends StatelessWidget {
@@ -14,7 +15,13 @@ class UserList extends StatelessWidget {
         centerTitle: true,
         title: const Text('Lista de Usuários'),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.add))
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                AppRoutes.USER_FORM
+              );
+            }, 
+            icon: const Icon(Icons.add))
         ],
       ),
       body: ListView.builder(

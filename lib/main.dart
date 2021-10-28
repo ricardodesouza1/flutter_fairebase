@@ -1,5 +1,9 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/provider/user.dart';
+import 'package:flutter_firebase/routes/app_routes.dart';
+import 'package:flutter_firebase/views/user_form.dart';
 import 'package:flutter_firebase/views/user_list.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +28,12 @@ class MyApp extends StatelessWidget {
          
           primarySwatch: Colors.blue,
         ),
-        home: const UserList(),
+        //home: const UserList(),
+        routes: {
+          AppRoutes.HOME: (_) => const  UserList(),
+          AppRoutes.USER_FORM: (_) => const UserForm(),
+        },
+         
       ),
     );
   }
