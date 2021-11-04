@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/models/user.dart';
+import 'package:flutter_firebase/provider/user.dart';
 import 'package:flutter_firebase/routes/app_routes.dart';
+import 'package:provider/provider.dart';
 
 class UserTile extends StatelessWidget {
   final User user;
@@ -29,9 +31,30 @@ class UserTile extends StatelessWidget {
                   );
                 }, 
                 icon: const Icon(Icons.edit)),
-              IconButton(
+              IconButton( 
                 color: Colors.red,
-                onPressed: () {}, 
+                onPressed: () {
+                  showDialog(
+                    context: context, 
+                    builder: (context) => AlertDialog(
+                      title: const Text('Tem certeza???'),
+                      actions: <Widget>[
+                        TextButton(onPressed: (){
+                          Navigator.of(context).pop(false);
+                        }, child: const Text('Não'),
+                        ),
+                        TextButton(onPressed: (){
+                          Navigator.of(context).pop(true);
+                        }, child: const Text('Sim'),
+                        )
+                      ],
+                    )
+                    ).then((confirmado) {
+                      if(confirmado){
+                        Provider.of<Users>(context, listen: false).remove(user);
+                      }
+                    });
+                }, 
                 icon:  const Icon(Icons.delete)),
               
               ],),
