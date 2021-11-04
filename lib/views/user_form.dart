@@ -23,15 +23,15 @@ class UserForm extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    final user = ModalRoute.of(context)?.settings.arguments as User;
+   // final user = ModalRoute.of(context).settings.arguments as User;
     //User user2 = user;
     //print(user.id);
     //print(user.name);
     //print(user.email);
     //print(user.avatarUrl);
-    if(user != null){
-    _loadFormData(user);
-    }
+   // if(user != null){
+    //loadFormData(user);
+    //}
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastro de Usuários'),

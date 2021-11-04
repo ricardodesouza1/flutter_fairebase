@@ -18,7 +18,7 @@ class UserTile extends StatelessWidget {
           
           leading: avatar,
           title: Text(user.name),
-          subtitle: Text(user.email),
+          subtitle: Text(user.id),
           trailing: SizedBox(
             width: 100,
             child: Row(children: [

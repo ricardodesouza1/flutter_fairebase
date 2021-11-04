@@ -1,14 +1,22 @@
+
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/data/dummy_user.dart';
 import 'package:flutter_firebase/models/user.dart';
+import 'package:http/http.dart' as http;
 
 class Users with ChangeNotifier{
+  static const _baseUrl = '-----';
   final Map< String, User> _items = {...DUMMY_USER};
 
-  List<User> get all {
-    return [..._items.values];
+  Future<List<User>> get all async{
+    final response = await http.post(
+          Uri.parse('$_baseUrl/users.json'), 
+      );
+      return json.decode(response.body);
+    //return [..._items.values];
   }
 
   int get count {
@@ -19,7 +27,7 @@ class Users with ChangeNotifier{
     return _items.values.elementAt(i);
   }
 
-  void put(User user) {
+  Future<void> put(User user) async{
     if(user.name ==  null){
       return;
     }
@@ -33,7 +41,17 @@ class Users with ChangeNotifier{
         ),
       );
     }else{
-      final id = Random().nextDouble().toString();
+      final response = await http.post(
+        Uri.parse('$_baseUrl/users.json'), 
+        body: json.encode({
+          "name": user.name,
+          "email": user.email,
+          "avatarUrl": user.avatarUrl,
+        }),
+      );
+
+      final id = json.decode(response.body)['name'];
+      print(json.decode(response.body));
       _items.putIfAbsent(id, () => User(
         id: id,
         name: user.name,
